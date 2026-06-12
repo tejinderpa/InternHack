@@ -1,5 +1,5 @@
 import { useMemo, useState, type ReactNode } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, MotionConfig, motion } from "framer-motion";
 import { CheckCircle2, ChevronDown, Trophy, XCircle } from "lucide-react";
 
 export interface LessonTabDef {
@@ -42,7 +42,8 @@ export function LessonShell({
   const active = tabs.find((t) => t.id === activeTab) ?? tabs[0];
 
   return (
-    <div className="text-stone-900 dark:text-stone-50">
+    <MotionConfig reducedMotion="user">
+      <div className="text-stone-900 dark:text-stone-50">
       {/* Editorial header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -115,7 +116,8 @@ export function LessonShell({
       {quiz.length > 0 && (
         <QuizBlock quiz={quiz} onComplete={onQuizComplete} nextLessonHint={nextLessonHint} />
       )}
-    </div>
+      </div>
+    </MotionConfig>
   );
 }
 
